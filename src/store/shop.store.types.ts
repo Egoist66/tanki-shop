@@ -1,4 +1,4 @@
-export type CounterStore = {
+export type ShopStoreType = {
   bears: number;
   increasePopulation: () => void;
   removeAllBears: () => void;

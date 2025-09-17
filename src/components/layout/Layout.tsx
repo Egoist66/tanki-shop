@@ -7,9 +7,12 @@ import type { LayoutProps } from "./Layout.types";
  * or a ReactNode directly.
  * @param {{ children: (() => ReactNode) | ReactNode, header?: (() => ReactNode) | ReactNode, footer?: (() => ReactNode) | ReactNode }} props
  */
-export const Layout: FC<LayoutProps> = ({ children, header, footer }) => {
-
-  console.log('render', Layout.name);
+export const Layout: FC<LayoutProps> = ({
+  children,
+  header,
+  containerWidth = 1138,
+  footer,
+}) => {
   const headerElement =
     header && typeof header === "function" ? header() : header;
   const childrenElement =
@@ -17,10 +20,28 @@ export const Layout: FC<LayoutProps> = ({ children, header, footer }) => {
   const footerElement =
     footer && typeof footer === "function" ? footer() : footer;
   return (
-    <div className="min-h-screen w-full bg-black text-white px-6 py-5">
-      {headerElement && <header className="mb-10">{headerElement}</header>}
-      {childrenElement && <main className="flex gap-6">{childrenElement}</main>}
-      {footerElement && <footer>{footerElement}</footer>}
+    <div id="app-layout">
+      {headerElement && (
+        <header className="mb-10">
+          <div style={{ maxWidth: containerWidth }} className={`px-10 py-4 m-auto`}>
+            {headerElement}
+          </div>
+        </header>
+      )}
+      {childrenElement && (
+        <main>
+          <div style={{ maxWidth: containerWidth }} className={`px-10 py-4 m-auto`}>
+            {childrenElement}
+          </div>
+        </main>
+      )}
+      {footerElement && (
+        <footer>
+          <div style={{ maxWidth: containerWidth }} className={`px-10 py-4 m-auto`}>
+            {footerElement}
+          </div>
+        </footer>
+      )}
     </div>
   );
 };

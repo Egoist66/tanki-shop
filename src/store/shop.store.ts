@@ -1,23 +1,21 @@
 import { create , type StateCreator } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import type { CounterStore } from "./counter.store.types";
+import type { ShopStoreType } from "./shop.store.types";
 
 
 
-const AppMiddleWare = (f: StateCreator<CounterStore>) => {
+const AppMiddleWare = (f: StateCreator<ShopStoreType>) => {
     return devtools(persist(f, {
-      name: "counter-storage",
+      name: "reserved-tanks-data",
     })
   );
 }
 
 
 
-const initialState: { bears: CounterStore['bears'] } = {
-  bears: 0,
-}
+const initialState: any = {}
 
-export const useCounterStore = create<CounterStore>()(
+export const useCounterStore = create<ShopStoreType>()(
   AppMiddleWare((set) => ({
    
     ...initialState,

@@ -1,8 +1,25 @@
 @import "tailwindcss";
 
 
+* {
+    
+    @apply box-border;
+}
+
+
 
 img {
-    max-width: 100%;
+    @apply max-w-full;
     @apply block;
+}
+
+
+html {
+    background-image: url('../img/shop-bg.webp');
+    @apply bg-cover;
+    @apply bg-fixed;
+}
+
+body {
+    @apply overflow-x-hidden;
 }
