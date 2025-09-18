@@ -4,6 +4,7 @@
 * {
     
     @apply box-border;
+    
 }
 
 
@@ -22,4 +23,7 @@ html {
 
 body {
     @apply overflow-x-hidden;
+    font-family: 'Roboto Condensed', sans-serif;
 }
+
+
