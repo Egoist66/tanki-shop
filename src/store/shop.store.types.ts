@@ -1,6 +1,7 @@
+import type { Tank } from "../api/data.types";
+
 export type ShopStoreType = {
-  bears: number;
-  increasePopulation: () => void;
-  removeAllBears: () => void;
-  updateBears: (newBears: number) => void;
+  data: Tank[];
+  setTanksData: (tanks: Tank[]) => void;
+  getTanksData: () => Tank[];
 };

@@ -1,6 +1,7 @@
 import { create , type StateCreator } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import type { ShopStoreType } from "./shop.store.types";
+import type { Tank } from "../api/data.types";
 
 
 
@@ -13,16 +14,14 @@ const AppMiddleWare = (f: StateCreator<ShopStoreType>) => {
 
 
 
-const initialState: any = {}
+const data: ShopStoreType['data'] = [];
 
-export const useCounterStore = create<ShopStoreType>()(
+export const useTanksShopStore = create<ShopStoreType>()(
   AppMiddleWare((set) => ({
    
-    ...initialState,
-
-
-    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-    removeAllBears: () => set({ bears: 0 }),
-    updateBears: (newBears: number) => set({ bears: newBears }),
+    data,
+    getTanksData: () => data,
+    setTanksData: (tanks: Tank[]) => set({ data: tanks }),
+    
   }))
 );

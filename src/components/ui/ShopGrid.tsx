@@ -1,9 +1,13 @@
-import type { FC } from "react";
+import type { TanksDataApiResponse } from "../../api/data.types";
 
-export const ShopGrid: FC = () => {
+export default function ShopGrid({data}: TanksDataApiResponse){
   return (
-    <div>
+    <div className="text-[#FEFEEC]">
       Grid
+
+      <pre>
+        {JSON.stringify(data, null, 2)}
+      </pre>
     </div>
   );
-};
+}
