@@ -8,7 +8,7 @@ const ShopGrid = lazy(() => import("../components/ui/ShopGrid"));
 
 export default function Home() {
   const { pathname } = useLocation();
-  const { data, tanksDataStatus } = useTanksShopData();
+  const { data } = useTanksShopData();
 
   return (
     <section>
