@@ -13,7 +13,7 @@ export default function ShopGrid({ data }: TanksDataApiResponse) {
             to={`/tank/${tank.id}`}
             className="border-1 overflow-hidden rounded-sm border-[#fbf8f83b] bg-[#00000098] h-[222px] p-4 text-center"
             style={{
-              backgroundImage: `url(${tank.image}), url('../public/icons/card-discount-sparkles.svg')`,
+              backgroundImage: `url(${tank.image}), url('../icons/card-discount-sparkles.svg')`,
               backgroundRepeat: "no-repeat, no-repeat",
               backgroundSize: "contain, contain",
               backgroundPosition: "right, right top",
