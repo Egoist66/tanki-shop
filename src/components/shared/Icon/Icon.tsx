@@ -6,7 +6,7 @@ export const Icon: FC<IconProps> = ({ variant, width }) => {
     <img
       style={{ width: width + "px" }}
       loading="lazy"
-      src={`public/icons/${variant}.svg`}
+      src={`/public/icons/${variant}.svg`}
       alt={variant}
     />
   );
