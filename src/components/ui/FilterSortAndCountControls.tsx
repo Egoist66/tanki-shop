@@ -12,7 +12,7 @@ export const FilterSortAndCountControls: FC = () => {
         <div className="sort-controls flex items-center">
           <span>Сортировать по цене:</span>
           <button>
-            <Icon width={50} variant="sort-toggle" />
+            <Icon  variant="sort-toggle" />
           </button>
         </div>
 
@@ -20,19 +20,19 @@ export const FilterSortAndCountControls: FC = () => {
           <span>Показать:</span>
           <div className="flex items-center flex-wrap">
             <button>
-              <Icon width={50} variant="light-tank" />
+              <Icon variant="light-tank" />
             </button>
             <button>
-              <Icon width={50} variant="medium-tank" />
+              <Icon variant="medium-tank" />
             </button>
             <button>
-              <Icon width={50} variant="heavy-tank" />
+              <Icon  variant="heavy-tank" />
             </button>
             <button>
-              <Icon width={50} variant="pt-sau" />
+              <Icon  variant="pt-sau" />
             </button>
             <button>
-              <Icon width={50} variant="artillery" />
+              <Icon  variant="artillery" />
             </button>
           </div>
         </div>
