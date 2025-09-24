@@ -10,6 +10,8 @@ export default function Home() {
   const { pathname } = useLocation();
   const { data } = useTanksShopData();
 
+
+
   return (
     <section>
       <Helmet>

@@ -13,8 +13,7 @@ export const useShopGrid = (data: Tank[]) => {
   useEffect(() => {
     setSortedAndFilteredTanks(data, pathname.replace("/", "") as "premium" | "collection")
 
-    return () => {}
-  }, [isSorted, data, pathname])
+  }, [isSorted])
 
   return {
     sortedAndFilteredTanks

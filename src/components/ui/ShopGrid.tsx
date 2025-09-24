@@ -34,6 +34,7 @@ export default function ShopGrid({ data }: TanksDataApiResponse) {
             >
               <Link
                 data-id={tank.premium ? "premium" : "collection"}
+                className="block h-full"
                 to={`/tank/${tank.id}`}
               >
                 <h2 className="text-right text-[#E9E0BE] text-[20px] font-medium">

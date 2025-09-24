@@ -9,6 +9,7 @@ export interface Tank {
   image: string
   discount: number
   price: number
+  fullDescription: string
   old_price: number
   vehicle_type: string
   premium: boolean

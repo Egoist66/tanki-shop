@@ -9,3 +9,6 @@ export type ShopStoreType = {
   setSortedAndFilteredTanks: (tanks: Tank[], pathName: "premium" | "collection") => void
   toggleSortOrder: () => void
 }
+
+
+export type VehicleType = 'lightTank' | 'mediumTank' | 'heavyTank' | 'SPG' | 'AT-SPG' | 'all'

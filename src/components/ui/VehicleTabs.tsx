@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router";
  *
  * @returns A JSX element containing two buttons.
  */
-export const VeicleTabs: FC = () => {
+export const VehicleTabs: FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const clearPathName = pathname.replace("/", "");

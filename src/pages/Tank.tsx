@@ -36,7 +36,7 @@ export default function Tank() {
             <h1 className="text-4xl text-[#E9E0BE] font-bold text-center">
               {currentTank.title}
             </h1>
-            <p className="text-xl text-[#8C8C7E] text-center">{currentTank.description}</p>
+            <p className="text-xl text-[#8C8C7E] text-center">{currentTank.fullDescription}</p>
             <div className="flex flex-row items-center justify-center mt-10">
               <p className="text-2xl text-[#E9E0BE] font-bold mr-5">{currentTank.price} $</p>
               {currentTank.old_price && (

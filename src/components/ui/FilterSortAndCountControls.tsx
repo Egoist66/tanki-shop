@@ -8,6 +8,8 @@ export const FilterSortAndCountControls: FC = () => {
     sortedAndFilteredTanks,
     isSorted,
     toggleSortOrder,
+    setVehicleTypes,
+    
   } = useFilterSortAndCount();
 
   return (
@@ -35,22 +37,23 @@ export const FilterSortAndCountControls: FC = () => {
         <div className="filter-controls flex items-center gap-1 flex-wrap">
           <span>Показать:</span>
           <div className="flex items-center flex-wrap">
-            <button>
+            <button onClick={() => setVehicleTypes("lightTank")}>
               <Icon variant="light-tank" />
             </button>
-            <button>
+            <button onClick={() => setVehicleTypes("mediumTank")}>
               <Icon variant="medium-tank" />
             </button>
-            <button>
+            <button onClick={() => setVehicleTypes("heavyTank")}>
               <Icon variant="heavy-tank" />
             </button>
-            <button>
+            <button onClick={() => setVehicleTypes("AT-SPG")}>
               <Icon variant="pt-sau" />
             </button>
-            <button>
+            <button onClick={() => setVehicleTypes("SPG")}>
               <Icon variant="artillery" />
             </button>
           </div>
+       
         </div>
       </div>
     </div>

@@ -14,10 +14,11 @@ const AppMiddleWare = (f: StateCreator<ShopStoreType>) => {
 const data: ShopStoreType["data"] = [];
 
 export const useTanksShopStore = create<ShopStoreType>()(
+
   AppMiddleWare((set) => ({
     data,
     sortedAndFilteredTanks: [],
-    isSorted: false,
+    isSorted: location.search.split("=")[1] === "asc",
     toggleSortOrder: () => set((state) => ({ isSorted: !state.isSorted })),
     getTanksData: () => data,
     setTanksData: (tanks: Tank[]) => set({ data: tanks }),
@@ -25,6 +26,7 @@ export const useTanksShopStore = create<ShopStoreType>()(
       tanks: Tank[],
       pathName: "premium" | "collection"
     ) => {
+
       return set((state) => {
         switch (pathName) {
           case "premium": {
@@ -37,7 +39,7 @@ export const useTanksShopStore = create<ShopStoreType>()(
               const sortedTanks = tanks
                 .filter((tank) => tank.premium)
                 .sort((a, b) => b.price - a.price);
-              return { sortedAndFilteredTanks: sortedTanks };
+              return { sortedAndFilteredTanks: sortedTanks};
             }
           }
           case "collection": {
@@ -54,7 +56,15 @@ export const useTanksShopStore = create<ShopStoreType>()(
             }
           }
           default: {
-            return { sortedAndFilteredTanks: tanks };
+            if(state.isSorted){
+              const sortedTanks = tanks.sort((a, b) => a.price - b.price);
+              return { sortedAndFilteredTanks: sortedTanks };
+            }
+            else {
+              const sortedTanks = tanks.sort((a, b) => b.price - a.price);
+              return { sortedAndFilteredTanks: sortedTanks };
+            }
+            
           }
         }
         
