@@ -6,6 +6,6 @@ export type ShopStoreType = {
   isSorted: boolean;
   setTanksData: (tanks: Tank[]) => void;
   getTanksData: () => Tank[];
-  setSortedAndFilteredTanks: (tanks: Tank[]) => void
+  setSortedAndFilteredTanks: (tanks: Tank[], pathName: "premium" | "collection") => void
   toggleSortOrder: () => void
 }

@@ -1,37 +1,22 @@
-import type { TanksDataApiResponse } from "../../api/data.types";
+import { useEffect } from "react"
 import { useLocation } from "react-router";
-import { useState } from "react";
+import { useTanksShopStore } from "../../store/shop.store"
+import type { Tank } from "../../api/data.types"
 
-export const useShopGrid = (data: TanksDataApiResponse["data"]) => {
-  const { pathname } = useLocation();
-  const clearedPathName = pathname.replace("/", "");
-
-  // Булевый флаг для направления сортировки
-  const [sortAsc, setSortAsc] = useState(true);
-
-  const filteredTanks = () => {
-    switch (clearedPathName) {
-      case "premium": {
-        return data.filter((tank) => tank.premium);
-      }
-      case "collection": {
-        return data.filter((tank) => !tank.premium);
-      }
-      default: {
-        return data;
-      }
-    }
-  };
+export const useShopGrid = (data: Tank[]) => {
+     const {setSortedAndFilteredTanks, isSorted, sortedAndFilteredTanks} = useTanksShopStore()
+  const {pathname} = useLocation()
 
 
 
-  const toggleSortOrder = () => {
-    setSortAsc((prev) => !prev);
-  };
+  
+  useEffect(() => {
+    setSortedAndFilteredTanks(data, pathname.replace("/", "") as "premium" | "collection")
+
+    return () => {}
+  }, [isSorted, data, pathname])
 
   return {
-    filteredTanks,
-    sortAsc,
-    toggleSortOrder,
-  };
-};
+    sortedAndFilteredTanks
+  }
+}
