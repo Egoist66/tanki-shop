@@ -1,5 +1,6 @@
 export type IconProps = {
   variant: IconVariant;
+  className?: string;
   width?: number;
 };
 

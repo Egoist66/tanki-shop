@@ -4,7 +4,7 @@ import { useTanksShopStore } from "../../store/shop.store";
 export const useFilterSortAndCount = () => {
 
     const { pathname } = useLocation();
-    const {sortedAndFilteredTanks, toggleSortOrder} = useTanksShopStore()
+    const {sortedAndFilteredTanks, toggleSortOrder, isSorted} = useTanksShopStore()
   
   
     const computedTextByPathName = () => {
@@ -21,6 +21,7 @@ export const useFilterSortAndCount = () => {
     return {
       sortedAndFilteredTanks,
       computedTextByPathName,
+      isSorted,
       toggleSortOrder
     }
 
