@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { Icon } from "../shared/Icon/Icon";
 import { useFilterSortAndCount } from "../../hooks/useFilterSortAndCount/useFilterSortAndCount";
-import type { VehicleType } from "../../store/shop.store.types";
 import type { IconVariant } from "../shared/Icon/icon.types";
 
 export const FilterSortAndCountControls: FC = () => {
