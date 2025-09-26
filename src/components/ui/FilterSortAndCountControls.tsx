@@ -14,28 +14,6 @@ export const FilterSortAndCountControls: FC = () => {
     setVehicleTypes,
   } = useFilterSortAndCount();
 
-  const filterButtons: Array<{ type: VehicleType; icon: IconVariant }> = [
-    {
-      type: "lightTank",
-      icon: "light-tank",
-    },
-    {
-      type: "mediumTank",
-      icon: "medium-tank",
-    },
-    {
-      type: "heavyTank",
-      icon: "heavy-tank",
-    },
-    {
-      type: "AT-SPG",
-      icon: "pt-sau",
-    },
-    {
-      type: "SPG",
-      icon: "artillery",
-    },
-  ];
 
   return (
     <div className="filter-sort-and-count-controls flex flex-wrap items-center justify-between text-[#FEFEEC]">
@@ -62,16 +40,17 @@ export const FilterSortAndCountControls: FC = () => {
         <div className="filter-controls flex items-center gap-1 flex-wrap">
           <span>Показать:</span>
           <div className="flex items-center flex-wrap">
-            {filterButtons.map((button, i) => (
+            {vehicleType.map((button) => (
               <button
+                title="Удерживайте Shift + клик"
                 key={button.type}
                 onClick={(e) => setVehicleTypes(e, button.type)}
               >
                 <Icon
                   className={`${
-                    vehicleType[i]?.type === button.type ? "sepia-[1]" : ""
+                    button?.checked ? "sepia-[1]" : "cursor-pointer"
                   } `}
-                  variant={button.icon}
+                  variant={button.type as IconVariant}
                 />
               </button>
             ))}

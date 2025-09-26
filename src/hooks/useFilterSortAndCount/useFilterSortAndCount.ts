@@ -5,7 +5,14 @@ import type { VehicleType } from "../../store/shop.store.types";
 import type { Tank } from "../../api/data.types";
 
 export const useFilterSortAndCount = () => {
-  const [vehicleType, setVehicleType] = useState<Array<{ type: VehicleType; checked: boolean }>>([]);
+  const [vehicleType, setVehicleType] = useState<Array<{ type: VehicleType; checked: boolean }>>([
+    { type: "lightTank", checked: false },
+    { type: "mediumTank", checked: false },
+    { type: "heavyTank", checked: false },
+    { type: "AT-SPG", checked: false },
+    { type: "SPG", checked: false },
+  ]);
+
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -47,7 +54,9 @@ export const useFilterSortAndCount = () => {
       });
     } else {
       setVehicleType((prev) => 
-        prev.filter((item) => item.type !== type)
+        prev.map(item => 
+          item.type === type ? { ...item, checked: false } : item
+        )
       );
     }
   };
@@ -56,7 +65,7 @@ export const useFilterSortAndCount = () => {
     if (data.length) {
       setCopyOfAllTanks([...data]);
     }
-  }, [data]); // Добавил data в зависимости
+  }, [data]);
 
   useEffect(() => {
     const newParams = new URLSearchParams(searchParams);
@@ -100,7 +109,7 @@ export const useFilterSortAndCount = () => {
       filteredTanks,
       pathname.replace("/", "") as "premium" | "collection"
     );
-  }, [vehicleType, copyOfAllTanks, pathname]); // Добавил недостающие зависимости
+  }, [vehicleType, copyOfAllTanks, pathname]);
 
   return {
     sortedAndFilteredTanks,
