@@ -1,16 +1,41 @@
 import type { FC } from "react";
 import { Icon } from "../shared/Icon/Icon";
 import { useFilterSortAndCount } from "../../hooks/useFilterSortAndCount/useFilterSortAndCount";
+import type { VehicleType } from "../../store/shop.store.types";
+import type { IconVariant } from "../shared/Icon/icon.types";
 
 export const FilterSortAndCountControls: FC = () => {
   const {
     computedTextByPathName,
     sortedAndFilteredTanks,
+    vehicleType,
     isSorted,
     toggleSortOrder,
     setVehicleTypes,
-    
   } = useFilterSortAndCount();
+
+  const filterButtons: Array<{ type: VehicleType; icon: IconVariant }> = [
+    {
+      type: "lightTank",
+      icon: "light-tank",
+    },
+    {
+      type: "mediumTank",
+      icon: "medium-tank",
+    },
+    {
+      type: "heavyTank",
+      icon: "heavy-tank",
+    },
+    {
+      type: "AT-SPG",
+      icon: "pt-sau",
+    },
+    {
+      type: "SPG",
+      icon: "artillery",
+    },
+  ];
 
   return (
     <div className="filter-sort-and-count-controls flex flex-wrap items-center justify-between text-[#FEFEEC]">
@@ -37,23 +62,20 @@ export const FilterSortAndCountControls: FC = () => {
         <div className="filter-controls flex items-center gap-1 flex-wrap">
           <span>Показать:</span>
           <div className="flex items-center flex-wrap">
-            <button onClick={(e) => setVehicleTypes(e, "lightTank")} >
-              <Icon variant="light-tank" />
-            </button>
-            <button onClick={(e) => setVehicleTypes(e, "mediumTank")}>
-              <Icon variant="medium-tank" />
-            </button>
-            <button onClick={(e) => setVehicleTypes(e, "heavyTank")}>
-              <Icon variant="heavy-tank" />
-            </button>
-            <button onClick={(e) => setVehicleTypes(e, "AT-SPG")}>
-              <Icon variant="pt-sau" />
-            </button>
-            <button onClick={(e) => setVehicleTypes(e,"SPG")}>
-              <Icon variant="artillery" />
-            </button>
+            {filterButtons.map((button, i) => (
+              <button
+                key={button.type}
+                onClick={(e) => setVehicleTypes(e, button.type)}
+              >
+                <Icon
+                  className={`${
+                    vehicleType[i]?.type === button.type ? "sepia-[1]" : ""
+                  } `}
+                  variant={button.icon}
+                />
+              </button>
+            ))}
           </div>
-       
         </div>
       </div>
     </div>

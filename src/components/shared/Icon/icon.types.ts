@@ -15,3 +15,4 @@ export type IconVariant =
 | "light-tank"
 | "medium-tank"
 | "pt-sau"
+| "box-icon"

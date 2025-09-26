@@ -1,13 +1,16 @@
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useTanksShopData } from "../hooks/useTanksShopData/useTanksShopData";
 import { useEffect, useState } from "react";
 import type { Tank } from "../api/data.types";
 
+
+import { Button } from "../components/shared/Button/Button";
+
 export default function Tank() {
   const params = useParams();
-
   const { data } = useTanksShopData();
+  const navigate = useNavigate()
 
   const [currentTank, setFoundTank] = useState<Tank | null>(null);
 
@@ -24,6 +27,8 @@ export default function Tank() {
       <Helmet>
         <title>Tanki Shop - {`${currentTank?.title}`}</title>
       </Helmet>
+
+      <Button onClick={() => navigate('/')} text="Назад"/>
 
       <div className="flex flex-col items-center justify-center min-h-screen p-10 md:p-20">
         {currentTank && (
