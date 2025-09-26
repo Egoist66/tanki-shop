@@ -11,4 +11,4 @@ export type ShopStoreType = {
 }
 
 
-export type VehicleType = 'lightTank' | 'mediumTank' | 'heavyTank' | 'SPG' | 'AT-SPG' | 'all'
+export type VehicleType = 'lightTank' | 'mediumTank' | 'heavyTank' | 'SPG' | 'AT-SPG'

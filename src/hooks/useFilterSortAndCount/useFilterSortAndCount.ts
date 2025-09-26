@@ -1,19 +1,24 @@
 import { useLocation, useSearchParams } from "react-router";
 import { useTanksShopStore } from "../../store/shop.store";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import type { VehicleType } from "../../store/shop.store.types";
+import type { Tank } from "../../api/data.types";
 
 export const useFilterSortAndCount = () => {
-  const [vehicleType, setVehicleType] = useState<VehicleType>("all");
+  const [vehicleType, setVehicleType] = useState<VehicleType[]>([]);
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const {
     sortedAndFilteredTanks,
+    data,
     toggleSortOrder,
     isSorted,
     setSortedAndFilteredTanks,
   } = useTanksShopStore();
+
+  // Копия всегда содержит все танки и никогда не меняется
+  const [copyOfAllTanks, setCopyOfAllTanks] = useState<Tank[]>([]);
 
   const computedTextByPathName = () => {
     switch (pathname) {
@@ -25,9 +30,22 @@ export const useFilterSortAndCount = () => {
     }
   };
 
-  const setVehicleTypes = (type: VehicleType) => {
-    setVehicleType(type);
+  const setVehicleTypes = (
+    e: MouseEvent<HTMLButtonElement>,
+    type: VehicleType
+  ) => {
+    if (e.shiftKey && e.button === 0) {
+      setVehicleType((prev) => (prev.includes(type) ? prev : [...prev, type]));
+    } else {
+      setVehicleType((prev) => prev.filter((item) => item !== type));
+    }
   };
+
+  useEffect(() => {
+    if (data.length) {
+      setCopyOfAllTanks([...data]);
+    }
+  }, []);
 
   useEffect(() => {
     const newParams = new URLSearchParams(searchParams);
@@ -48,11 +66,21 @@ export const useFilterSortAndCount = () => {
   }, [isSorted, pathname]);
 
   useEffect(() => {
-    const sortedAndFilteredTanksAndTypes = sortedAndFilteredTanks.filter(
-      (tank) => tank.vehicle_type === vehicleType
+    if (vehicleType.length === 0) {
+      setSortedAndFilteredTanks(
+        copyOfAllTanks,
+        pathname.replace("/", "") as "premium" | "collection"
+      );
+      return;
+    }
+
+    // Если есть выбранные типы - фильтруем ИСХОДНУЮ копию
+    const filteredTanks = copyOfAllTanks.filter((tank) =>
+      vehicleType.includes(tank.vehicle_type as VehicleType)
     );
+
     setSortedAndFilteredTanks(
-      sortedAndFilteredTanksAndTypes,
+      filteredTanks,
       pathname.replace("/", "") as "premium" | "collection"
     );
   }, [vehicleType]);

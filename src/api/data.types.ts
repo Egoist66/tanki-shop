@@ -1,3 +1,5 @@
+import type { VehicleType } from "../store/shop.store.types"
+
 export interface TanksDataApiResponse {
   data: Tank[]
 }
