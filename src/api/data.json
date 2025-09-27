@@ -237,7 +237,7 @@
       "discount": 0,
       "price": 1242,
       "old_price": 1242,
-      "vehicle_type": "heavyTank",
+      "vehicle_type": "mediumTank",
       "premium": true
     }
   ]
