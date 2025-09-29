@@ -3,7 +3,6 @@ import { lazy, Suspense } from "react";
 import { Route, Routes, useLocation, Navigate } from "react-router";
 
 const HomePage = lazy(async () => await import("../pages/Home"));
-//@ts-ignore
 const TankPage = lazy(async () => await import("../pages/Tank"));
 
 export const RouterViewComponent = () => {
