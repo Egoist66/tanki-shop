@@ -13,6 +13,13 @@ export const useTanksShopData = () => {
 
   const { setTanksData, data } = useTanksShopStore();
 
+/**
+ * Fetches data from ../../api/data.json and sets it to the store.
+ * Waits for 1000ms before fetching the data.
+ * Sets the isLoading status to true while fetching the data.
+ * Sets the isSuccess status to true if the data is fetched successfully.
+ * Sets the isError status to true if an error occurs while fetching the data.
+ */
   const getTanksData = async () => {
     try {
       setTanksDataStatus({
